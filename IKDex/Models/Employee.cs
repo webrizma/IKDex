@@ -7,6 +7,9 @@ public sealed class Employee
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string FullName => $"{FirstName} {LastName}".Trim();
+    public string DisplayName => FullName.ToUpperInvariant();
+    public string DisplayDepartment => Department.ToUpperInvariant();
+    public string DisplayPosition => Position.ToUpperInvariant();
     public string Initials
     {
         get
