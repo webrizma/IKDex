@@ -21,6 +21,22 @@ public sealed class Employee
     }
     public string Email { get; set; } = string.Empty;
     public string Phone { get; set; } = string.Empty;
+    public string NationalId { get; set; } = string.Empty;
+    public string Gender { get; set; } = string.Empty;
+    public string MaritalStatus { get; set; } = string.Empty;
+    public DateTime? BirthDate { get; set; }
+    public string BirthPlace { get; set; } = string.Empty;
+    public string MotherName { get; set; } = string.Empty;
+    public string FatherName { get; set; } = string.Empty;
+    public string Address { get; set; } = string.Empty;
+    public string City { get; set; } = string.Empty;
+    public string EmergencyContactName { get; set; } = string.Empty;
+    public string EmergencyContactPhone { get; set; } = string.Empty;
+    public string EducationLevel { get; set; } = string.Empty;
+    public string BloodType { get; set; } = string.Empty;
+    public string EmploymentType { get; set; } = string.Empty;
+    public decimal GrossSalary { get; set; }
+    public string Iban { get; set; } = string.Empty;
     public string Department { get; set; } = string.Empty;
     public string Position { get; set; } = string.Empty;
     public DateTime StartDate { get; set; } = DateTime.Today;

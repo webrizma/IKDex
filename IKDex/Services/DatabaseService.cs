@@ -166,7 +166,27 @@ public sealed class DatabaseService
         command.ExecuteNonQuery();
 
         EnsureColumn(connection, "Users", "EmployeeId", "INTEGER NULL REFERENCES Employees(Id)");
+        EnsureColumn(connection, "Employees", "NationalId", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "Gender", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "MaritalStatus", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "BirthDate", "TEXT NULL");
+        EnsureColumn(connection, "Employees", "BirthPlace", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "MotherName", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "FatherName", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "Address", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "City", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "EmergencyContactName", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "EmergencyContactPhone", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "EducationLevel", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "BloodType", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "EmploymentType", "TEXT NOT NULL DEFAULT ''");
+        EnsureColumn(connection, "Employees", "GrossSalary", "REAL NOT NULL DEFAULT 0");
+        EnsureColumn(connection, "Employees", "Iban", "TEXT NOT NULL DEFAULT ''");
         EnsureColumn(connection, "CompanySettings", "UpdateRepositoryUrl", "TEXT NOT NULL DEFAULT ''");
+
+        using var employeeIndexCommand = connection.CreateCommand();
+        employeeIndexCommand.CommandText = "CREATE UNIQUE INDEX IF NOT EXISTS IX_Employees_NationalId ON Employees(NationalId) WHERE TRIM(NationalId) <> '';";
+        employeeIndexCommand.ExecuteNonQuery();
 
         using var countCommand = connection.CreateCommand();
         countCommand.CommandText = "SELECT COUNT(*) FROM Users;";
