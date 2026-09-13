@@ -1,0 +1,8 @@
+.vs/
+.dotnet-local/
+**/bin/
+**/obj/
+*.user
+*.suo
+artifacts/
+tmp/

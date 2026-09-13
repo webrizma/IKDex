@@ -1,0 +1,100 @@
+<Window x:Class="IKDex.ShellWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="IKDex" Width="1280" Height="780" MinWidth="1060" MinHeight="680"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" ResizeMode="CanResize"
+        Background="#F4F6FA" Icon="Assets/ikdex-app.png">
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="48" ResizeBorderThickness="6" CornerRadius="10" GlassFrameThickness="0"/>
+    </shell:WindowChrome.WindowChrome>
+
+    <Border BorderBrush="#DDE2EA" BorderThickness="1" Background="#F4F6FA">
+        <Grid>
+            <Grid.RowDefinitions><RowDefinition Height="48"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="White" BorderBrush="#E8EBF0" BorderThickness="0,0,0,1">
+                <Grid Margin="18,0,0,0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Width="28" Height="28" CornerRadius="8" Background="{StaticResource PrimaryBrush}">
+                            <TextBlock Text="İK" Foreground="White" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBlock Text="IKDex" FontSize="15" FontWeight="SemiBold" Margin="9,0,0,0" VerticalAlignment="Center"/>
+                        <Border Width="1" Height="18" Background="#E2E5EB" Margin="16,0"/>
+                        <TextBlock x:Name="CompanyTitleText" Text="İnsan Kaynakları Yönetimi" Foreground="#7A8495" FontSize="12" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+                        <Button Content="—" Width="46" BorderThickness="0" Background="Transparent" FontSize="14" Click="MinimizeButton_Click"/>
+                        <Button Content="□" Width="46" BorderThickness="0" Background="Transparent" FontSize="14" Click="MaximizeButton_Click"/>
+                        <Button Content="×" Width="46" BorderThickness="0" Background="Transparent" FontSize="20" Click="CloseButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="248"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Border Background="#171A2F">
+                    <Grid Margin="18,24,18,20">
+                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                        <TextBlock Text="ÇALIŞMA ALANI" Foreground="#737A98" FontSize="10" FontWeight="Bold" Margin="14,0,0,12"/>
+                        <StackPanel Grid.Row="1">
+                            <Button x:Name="DashboardNavButton" Style="{StaticResource ActiveNavButton}" Content="⌂    Genel Bakış" Click="DashboardNavButton_Click"/>
+                            <Button x:Name="EmployeesNavButton" Style="{StaticResource NavButton}" Content="♙    Personeller" Click="EmployeesNavButton_Click"/>
+                            <Button x:Name="DocumentsNavButton" Style="{StaticResource NavButton}" Content="▱    Özlük Belgeleri" Click="DocumentsNavButton_Click"/>
+                            <Button x:Name="OrganizationNavButton" Style="{StaticResource NavButton}" Content="▦    Departmanlar" Click="OrganizationNavButton_Click"/>
+                            <Button x:Name="LeaveNavButton" Style="{StaticResource NavButton}" Content="▣    İzin Yönetimi" Click="LeaveNavButton_Click"/>
+                            <Button x:Name="AttendanceNavButton" Style="{StaticResource NavButton}" Content="◷    Puantaj" Click="AttendanceNavButton_Click"/>
+                            <Button x:Name="PayrollNavButton" Style="{StaticResource NavButton}" Content="₺    Bordro Yönetimi" Click="PayrollNavButton_Click"/>
+                            <TextBlock Text="YÖNETİM" Foreground="#737A98" FontSize="10" FontWeight="Bold" Margin="14,28,0,12"/>
+                            <Button x:Name="ReportsNavButton" Style="{StaticResource NavButton}" Content="▤    Raporlar" Click="ReportsNavButton_Click"/>
+                            <Button x:Name="UsersNavButton" Style="{StaticResource NavButton}" Content="⚿    Kullanıcılar" Click="UsersNavButton_Click"/>
+                            <Button x:Name="SettingsNavButton" Style="{StaticResource NavButton}" Content="⚙    Şirket Ayarları" Click="SettingsNavButton_Click"/>
+                        </StackPanel>
+                        <Border Grid.Row="2" Background="#222640" CornerRadius="12" Padding="12">
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="38"/><ColumnDefinition Width="*"/><ColumnDefinition Width="30"/></Grid.ColumnDefinitions>
+                                <Border Width="34" Height="34" CornerRadius="17" Background="#6C63E8"><TextBlock x:Name="InitialsText" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                                <StackPanel Grid.Column="1" Margin="9,0"><TextBlock x:Name="UserNameText" Foreground="White" FontSize="12" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/><TextBlock x:Name="UserRoleText" Foreground="#9298B4" FontSize="10" TextTrimming="CharacterEllipsis"/></StackPanel>
+                                <Button Grid.Column="2" Content="↪" Foreground="#AEB3C9" Background="Transparent" BorderThickness="0" Cursor="Hand" ToolTip="Oturumu kapat" Click="LogoutButton_Click"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Grid Grid.Column="1">
+                <ScrollViewer x:Name="DashboardView" VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="38,30">
+                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                        <Grid>
+                            <StackPanel><TextBlock Text="Genel Bakış" FontSize="28" FontWeight="SemiBold" Foreground="#19202D"/><TextBlock x:Name="WelcomeText" Margin="0,6,0,0" Foreground="#778195" FontSize="13"/></StackPanel>
+                            <Button Content="+  Yeni personel" Style="{StaticResource PrimaryButton}" Width="148" HorizontalAlignment="Right" Click="NewEmployeeButton_Click"/>
+                        </Grid>
+
+                        <UniformGrid Grid.Row="1" Columns="4" Margin="0,28,0,22">
+                            <Border Style="{StaticResource DashboardCard}" Margin="0,0,12,0"><StackPanel><TextBlock Text="AKTİF PERSONEL" Style="{StaticResource CardLabel}"/><TextBlock x:Name="EmployeeCountText" Text="0" Style="{StaticResource CardValue}"/><TextBlock Text="Tüm çalışanlar" Foreground="#3BA878" FontSize="11"/></StackPanel></Border>
+                            <Border Style="{StaticResource DashboardCard}" Margin="4,0,8,0"><StackPanel><TextBlock Text="BUGÜN İZİNLİ" Style="{StaticResource CardLabel}"/><TextBlock x:Name="TodayLeaveCountText" Text="0" Style="{StaticResource CardValue}"/><TextBlock Text="Onaylı izin kayıtları" Foreground="#D28A35" FontSize="11"/></StackPanel></Border>
+                            <Border Style="{StaticResource DashboardCard}" Margin="8,0,4,0"><StackPanel><TextBlock Text="DEPARTMAN" Style="{StaticResource CardLabel}"/><TextBlock x:Name="DepartmentCountText" Text="0" Style="{StaticResource CardValue}"/><TextBlock Text="Aktif organizasyon" Foreground="#625CE5" FontSize="11"/></StackPanel></Border>
+                            <Border Style="{StaticResource DashboardCard}" Margin="12,0,0,0"><StackPanel><TextBlock Text="BEKLEYEN TALEP" Style="{StaticResource CardLabel}"/><TextBlock x:Name="PendingLeaveCountText" Text="0" Style="{StaticResource CardValue}"/><TextBlock Text="İzin onayı bekliyor" Foreground="#778195" FontSize="11"/></StackPanel></Border>
+                        </UniformGrid>
+
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="1.6*"/><ColumnDefinition Width="20"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                            <Border Style="{StaticResource DashboardCard}" Padding="24">
+                                <StackPanel>
+                                    <Grid Margin="0,0,0,20"><TextBlock Text="Personel özeti" FontSize="16" FontWeight="SemiBold"/><Button Content="Tümünü gör  →" Foreground="{StaticResource PrimaryBrush}" Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" Cursor="Hand" Click="EmployeesNavButton_Click"/></Grid>
+                                    <Border Background="#F7F8FB" CornerRadius="10" Padding="18"><Grid><TextBlock Text="Personel kayıtlarınızı merkezi olarak yönetin." Foreground="#5F697A"/><TextBlock Text="Ekleme, düzenleme, arama ve durum yönetimi hazır." Grid.Row="1" Margin="0,25,0,0" Foreground="#8B94A5" FontSize="12"/></Grid></Border>
+                                    <Grid Margin="0,20,0,0"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="Aktif çalışan" Style="{StaticResource CardLabel}"/><TextBlock x:Name="ActiveSummaryText" Text="0" FontSize="22" FontWeight="SemiBold" Margin="0,6,0,0"/></StackPanel><StackPanel Grid.Column="1"><TextBlock Text="Kayıt sistemi" Style="{StaticResource CardLabel}"/><TextBlock Text="Çevrimiçi" FontSize="22" FontWeight="SemiBold" Foreground="#3BA878" Margin="0,6,0,0"/></StackPanel></Grid>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="2" Style="{StaticResource DashboardCard}" Padding="24">
+                                <StackPanel><TextBlock Text="Hızlı işlemler" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,18"/><Button Content="＋  Personel kaydı oluştur" Style="{StaticResource QuickActionButton}" Click="NewEmployeeButton_Click"/><Button Content="♙  Personel listesini aç" Style="{StaticResource QuickActionButton}" Click="EmployeesNavButton_Click"/><Button Content="▦  Departmanları yönet" Style="{StaticResource QuickActionButton}" Click="OrganizationNavButton_Click"/><Border Background="#F1F0FF" CornerRadius="10" Padding="14" Margin="0,12,0,0"><TextBlock Text="Sıradaki modül: İzin talebi ve onay süreci" Foreground="#5650B8" FontSize="12" TextWrapping="Wrap"/></Border></StackPanel>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+                <ContentControl x:Name="PageHost" Visibility="Collapsed"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
